@@ -2,6 +2,7 @@
 
 ## This Project
 
+- Spin up a Node: npx ```hardhat node```
 
 ## Basic Sample Hardhat Project
 
