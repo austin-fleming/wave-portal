@@ -66,7 +66,7 @@ const Home = () => (
           <h1 className={S.history__title}>See who&apos;s waved recently</h1>
           <div className={S.history__list}>
             {
-              sampleData.map((data) => <HistoryRecord {...data}/>)
+              sampleData.map((data) => <HistoryRecord key={data.waveDate} {...data}/>)
             }
           </div>
         </section>
