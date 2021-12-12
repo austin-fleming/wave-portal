@@ -22,6 +22,9 @@ const runMain = async () => {
 }
 
 runMain();
-
+// For local test:
 // deploy with: npx hardhat run scripts/deploy.js --network localhost
 // Make sure it's a different tab than the running node
+
+// For Rinkeby live test:
+// deploy with: npx hardhat run scripts/deploy.js --network rinkeby
