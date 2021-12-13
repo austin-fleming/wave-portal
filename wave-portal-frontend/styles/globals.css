@@ -47,6 +47,7 @@
   --font-size__h6: 1.25rem;
   --font-size__base: 1rem;
   --font-size__caption: 0.8rem;
+  --font-size__caption_small: 0.64rem;
 }
 
 html,

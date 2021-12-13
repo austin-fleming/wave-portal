@@ -3,6 +3,9 @@
 ## This Project
 
 - Spin up a Node: npx ```hardhat node```
+- In order for imports to function properly in Solidity, especially in monorepos, the Solidity extension must be pointed to node_modules.
+        - Go to workplace settings
+        - Set ```"solidity.packageDefaultDependenciesDirectory"``` to the relevant node_modules directory.
 
 ## Updating Contracts
 
