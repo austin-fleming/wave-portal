@@ -14,6 +14,8 @@ This is mostly just notes to remember what all has been done here.
 
 ### Deploy 02
 
-- Was deployed
-        - Txn: 
-        - Address: 0x781BEA68Ab6FDA3C9c81DCCDDc023976d96a9F13
+- Address: 0x781BEA68Ab6FDA3C9c81DCCDDc023976d96a9F13
+
+### Deploy 03
+
+- address: 0xd09bEb97205d3C80c90d34153De77bda1B95d111

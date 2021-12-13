@@ -3,10 +3,15 @@ const main = async () => {
     const accountBalance = await deployer.getBalance();
 
     console.log('Deploying contracts with account: ', deployer.address);
-    console.log('Account Balance: ', accountBalance.toString());
+    
 
     const Token = await hre.ethers.getContractFactory('WavePortal');
-    const portal = await Token.deploy();
+    const portal = await Token.deploy({
+        value: hre.ethers.utils.parseEther('0.001')
+    }); // Deploy with an initial balance
+
+    console.log('Account Balance: ', accountBalance.toString());
+    
     await portal.deployed();
 
     console.log('WavePortal address: ', portal.address);

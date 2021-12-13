@@ -11,11 +11,19 @@ async function main() {
     console.group("\nStart Deployment:");
     const [owner, randomPerson] = await hre.ethers.getSigners();
     const waveContractFactory = await hre.ethers.getContractFactory('WavePortal'); // compiles contract and adds files to /artifacts
-    const waveContract = await waveContractFactory.deploy(); // hardhat spins up local blockchain instance then runs contract
+    const waveContract = await waveContractFactory.deploy({
+        value: hre.ethers.utils.parseEther('0.1')
+    }); // hardhat spins up local blockchain instance then runs contract with an initial balance
     await waveContract.deployed();
 
     console.log("Contract deployment address:", waveContract.address); // gives address of deployed contract. Important when deploying to actual chain.
     console.log("Contract deployed by:", owner.address);
+    console.groupEnd()
+
+    console.group("\nInitial contract balance:")
+    const initialBalance = await hre.ethers.provider.getBalance(waveContract.address);
+    console.log('Unformatted balance:', initialBalance);
+    console.log('Formatted balance:', hre.ethers.utils.formatEther(initialBalance));
     console.groupEnd()
 
     console.group('\nInvoke "getTotalWaves":')
@@ -30,6 +38,11 @@ async function main() {
     await waveTxn.wait();
     console.groupEnd();
 
+    console.group("\nPost-wave balance:")
+    const newBalance = await hre.ethers.provider.getBalance(waveContract.address);
+    console.log('Formatted balance:', hre.ethers.utils.formatEther(newBalance));
+    console.groupEnd()
+
     console.group('\nInvoke "getTotalWaves":');
     waveCount = await waveContract.getTotalWaves(); // Log shows that this is the 'owner' waving.
     console.groupEnd();
@@ -39,6 +52,11 @@ async function main() {
     waveTxn = await waveContract.connect(randomPerson).wave(testMessage02); // Simulates an external person calling wave.
     await waveTxn.wait();
     console.groupEnd();
+
+    console.group("\nPost-wave 2 balance:")
+    const newBalance2 = await hre.ethers.provider.getBalance(waveContract.address);
+    console.log('Formatted balance:', hre.ethers.utils.formatEther(newBalance2));
+    console.groupEnd()
 
     console.group('\nInvoke "getAllWaves":');
     const allWaves = await waveContract.getAllWaves();

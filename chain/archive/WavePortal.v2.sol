@@ -23,8 +23,7 @@ contract WavePortal {
 
     Wave[] waves;
 
-    // Payable allows contract to receive payment
-    constructor() payable {
+    constructor() {
         console.log("Let's make this smart contract.");
     }
 
@@ -36,13 +35,6 @@ contract WavePortal {
         waves.push(Wave(msg.sender, _message, block.timestamp));
 
         emit NewWave(msg.sender, block.timestamp, _message);
-
-        uint256 prizeAmount = 0.0001 ether;
-        require (prizeAmount <= address(this).balance, "Contract has insufficient funds");
-
-        (bool success, ) = (msg.sender).call{ value: prizeAmount }("");
-
-        require(success, "Failed to withdraw money from contract.");
     }
 
     function getTotalWaves() public view returns (uint256) {
