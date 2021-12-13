@@ -91,7 +91,8 @@
   margin: 0 0 2em 0;
 }
 
-.hero__waveButton {
+.hero__waveButton,
+.hero__waveButton__inactive {
   pointer-events: all;
   font-size: var(--font-size__h6);
   font-family: 'Nunito';
@@ -104,6 +105,11 @@
   background-image: linear-gradient(311.62deg, #1766FF 0%, #5704b0 100%);
 
   box-shadow: #1766FF 0px 1px 1px 0px inset, #1766FF 0px 50px 100px -20px, #5704b0 0px 30px 60px -30px;
+}
+
+.hero__waveButton__inactive {
+  pointer-events: none;
+  opacity: 0.75;
 }
 
 .hero__buttonSubtext {
