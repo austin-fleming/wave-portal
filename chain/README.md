@@ -6,6 +6,7 @@
 - In order for imports to function properly in Solidity, especially in monorepos, the Solidity extension must be pointed to node_modules.
         - Go to workplace settings
         - Set ```"solidity.packageDefaultDependenciesDirectory"``` to the relevant node_modules directory.
+- Uses the Rinkeby network. Contract lookup can be done [HERE](https://rinkeby.etherscan.io/).
 
 ## Updating Contracts
 
