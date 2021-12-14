@@ -178,7 +178,7 @@ const Home = () => {
                   <div className={S.hero__buttonContainer__errored}>
                     <p className={S.hero__buttonContainer__errored__icon}>🤞</p>
                     <p>Ahhh crap...</p>
-                    <p>Something didn't work.</p>
+                    <p>Something didn&apos;t work.</p>
                     <p>Maybe try refreshing?</p>
                   </div>
                 ) : (
