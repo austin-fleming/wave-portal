@@ -1,10 +1,8 @@
-# Records
+# Deploys
 
 This is mostly just notes to remember what all has been done here.
 
-## Deploys
-
-### Deploy 01
+## Deploy 01
 
 - Everything before Lesson 3
 - Was deployed
@@ -12,10 +10,14 @@ This is mostly just notes to remember what all has been done here.
         - Address: 0x7464415fd959ef2ca8beddb03a2e3f98abf39599
 - Source files in ```/artifacts``` named as "WavePortal.v1.*"
 
-### Deploy 02
+## Deploy 02
 
 - Address: 0x781BEA68Ab6FDA3C9c81DCCDDc023976d96a9F13
 
-### Deploy 03
+## Deploy 03
 
 - address: 0xd09bEb97205d3C80c90d34153De77bda1B95d111
+
+## Deploy 04
+
+- address: 0x310B4b395B33a1622629E2BACCbaCc965b02Ca0d

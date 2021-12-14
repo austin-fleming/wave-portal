@@ -58,6 +58,20 @@ async function main() {
     console.log('Formatted balance:', hre.ethers.utils.formatEther(newBalance2));
     console.groupEnd()
 
+    console.group("\nCool-down check:")
+    try {
+        const testMessage03 = 'I should have failed'
+        waveTxn = await waveContract.connect(randomPerson).wave(testMessage03); // Should fail as "Random Person" has waved twice within the cool-down period.
+        await waveTxn.wait();
+    } catch (err) {
+        console.group()
+        console.log(err)
+        console.groupEnd()
+        console.log('✅ Cool-down failed successfully.')
+    }
+    console.groupEnd();
+
+
     console.group('\nInvoke "getAllWaves":');
     const allWaves = await waveContract.getAllWaves();
     console.log(allWaves);
