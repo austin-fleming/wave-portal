@@ -4,20 +4,29 @@ import S from '../styles/Home.module.css'
 import { CONTRACT_ADDRESS } from '../contract.config'
 import ABI from '../../chain/artifacts/contracts/WavePortal.sol/WavePortal.json' // artifact created when contract compiled
 
-const sampleData = [
-  {
-    waveDate: `11/12/21`,
-    address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
-  },
-  {
-    waveDate: `11/11/21`,
-    address: "0x90F79bf6EB2c4f870365E785982E1f101E93b906"
-  },
-  {
-    waveDate: '11/10/21',
-    address: "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65"
-  }
-]
+
+const getFormattedWaves = async (contract) => {
+  const rawWaves = await contract.getAllWaves();
+
+  let cleanedWaves = []
+  rawWaves.forEach((wave) => {
+    const rawTimestamp = new Date(wave.timestamp * 1000);
+    const formattedTimestamp = rawTimestamp.toUTCString();
+
+    cleanedWaves.push({
+      sender: wave.sender,
+      timestamp: formattedTimestamp,
+      message: wave.message
+    })
+  })
+
+  cleanedWaves.reverse();
+  cleanedWaves = cleanedWaves.length > 10 ? cleanedWaves.slice(0, 10) : cleanedWaves;
+
+  return cleanedWaves
+}
+
+
 
 
 
@@ -30,6 +39,8 @@ const Home = () => {
   const [buttonIsActive, setButtonIsActive] = useState(true)
   const [hasErrored, setHasErrored] = useState(false)
   const [waveMessage, setWaveMessage] = useState("")
+
+  
 
   const checkIfMetaMaskWalletIsConnected = async () => {
     // If visitor has MetaMask installed, it injects an "ethereum" object into the window
@@ -118,25 +129,7 @@ const Home = () => {
         setTotalWaves(count)
         console.log("Retrieved total wave count...", count);
 
-        const waves = await wavePortalContract.getAllWaves();
-        console.log('existing waves:', waves)
-
-        let cleanedWaves = []
-        waves.forEach((wave) => {
-          const rawTimestamp = new Date(wave.timestamp * 1000);
-          const formattedTimestamp = rawTimestamp.toUTCString();
-
-          cleanedWaves.push({
-            sender: wave.sender,
-            timestamp: formattedTimestamp,
-            message: wave.message
-          })
-        })
-
-        cleanedWaves.reverse();
-        cleanedWaves = cleanedWaves.length > 10 ? cleanedWaves.slice(0, 10) : cleanedWaves;
-
-        console.log('cleaned waves:', cleanedWaves)
+        const cleanedWaves = await getFormattedWaves(wavePortalContract);
         setAllWaves(cleanedWaves);
 
         setButtonStatusMessage("Thank you!")
