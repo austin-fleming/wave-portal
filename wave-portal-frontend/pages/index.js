@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import {ethers} from 'ethers'
 import S from '../styles/Home.module.css'
 import { CONTRACT_ADDRESS } from '../contract.config'
-import ABI from '../../chain/artifacts/contracts/WavePortal.sol/WavePortal.json' // artifact created when contract compiled
+import ABI from '../utils/abi/WavePortal.json' // artifact created when contract compiled
 
 
 const getFormattedWaves = async (contract) => {
